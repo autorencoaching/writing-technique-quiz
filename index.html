@@ -1,149 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interaktive Umfrage</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    .question {
-      margin-bottom: 20px;
-    }
-    .question h3 {
-      font-size: 1.2em;
-    }
-    .options label {
-      display: block;
-      margin: 5px 0;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #007bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .btn:hover {
-      background: #0056b3;
-    }
-    #result {
-      margin-top: 30px;
-      padding: 20px;
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schreibtechniken Umfrage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #444;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        button {
+            background-color: #5cb85c;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
 </head>
 <body>
-  <h1>Finde deine ideale Schreibtechnik</h1>
-  <form id="quiz">
-    <!-- Fragenbereich -->
-    <div class="question">
-      <h3>Wie planst du deinen Tag normalerweise?</h3>
-      <div class="options">
-        <label><input type="radio" name="q1" value="A"> Ich schreibe To-Do-Listen oder erstelle einen Zeitplan.</label>
-        <label><input type="radio" name="q1" value="B"> Ich habe grobe Ideen, was ich machen will, passe aber spontan an.</label>
-        <label><input type="radio" name="q1" value="C"> Ich entscheide einfach, worauf ich Lust habe.</label>
-      </div>
+<div class="container">
+    <h1>Welche Schreibtechnik passt zu dir?</h1>
+    <form id="surveyForm">
+
+        <!-- Question 1 -->
+        <h2>1. Wie gehst du mit neuen Projekten oder Aufgaben um?</h2>
+        <label><input type="radio" name="q1" value="schneeflocke,save,beat"> A: Ich plane Schritt für Schritt im Voraus.</label>
+        <label><input type="radio" name="q1" value="heldenreise,story,dreiakt"> B: Ich starte mit einer groben Idee und passe unterwegs an.</label>
+        <label><input type="radio" name="q1" value="discovery,mindmap,character"> C: Ich beginne einfach und lasse mich von meiner Intuition leiten.</label>
+
+        <!-- Question 2 -->
+        <h2>2. Wie reagierst du, wenn ein Plan scheitert oder sich die Umstände ändern?</h2>
+        <label><input type="radio" name="q2" value="schneeflocke,snowflake,beat"> A: Ich mache einen neuen Plan, um wieder auf Kurs zu kommen.</label>
+        <label><input type="radio" name="q2" value="story,heldenreise,dreiakt"> B: Ich improvisiere und suche nach einer anderen Lösung.</label>
+        <label><input type="radio" name="q2" value="discovery,reverse,mindmap"> C: Ich lasse das Problem ruhen und warte auf Inspiration.</label>
+
+        <!-- Question 3 -->
+        <h2>3. Wie wichtig ist es dir, dass deine Arbeit perfekt ist?</h2>
+        <label><input type="radio" name="q3" value="freytag,snowflake,save"> A: Sehr wichtig – ich strebe Perfektion an.</label>
+        <label><input type="radio" name="q3" value="dreiakt,story,beat"> B: Es ist hilfreich, aber nicht zwingend notwendig.</label>
+        <label><input type="radio" name="q3" value="discovery,mindmap,episodisch"> C: Ich konzentriere mich auf den kreativen Prozess, nicht auf Perfektion.</label>
+
+        <!-- Question 4 -->
+        <h2>4. Wie gehst du mit mehreren Ideen gleichzeitig um?</h2>
+        <label><input type="radio" name="q4" value="schneeflocke,szenenplanung,save"> A: Ich priorisiere und konzentriere mich auf die beste Idee.</label>
+        <label><input type="radio" name="q4" value="story,modular,heldenreise"> B: Ich probiere verschiedene Ideen aus und kombiniere sie.</label>
+        <label><input type="radio" name="q4" value="mindmap,reverse,discovery"> C: Ich lasse alle Ideen nebeneinander existieren und sortiere später aus.</label>
+
+        <!-- Question 5 -->
+        <h2>5. Wie gehst du mit langen und komplexen Aufgaben um?</h2>
+        <label><input type="radio" name="q5" value="freytag,szenenplanung,snowflake"> A: Ich arbeite Schritt für Schritt daran.</label>
+        <label><input type="radio" name="q5" value="heldenreise,story,dreiakt"> B: Ich lasse Raum für Anpassungen, bleibe aber dran.</label>
+        <label><input type="radio" name="q5" value="episodisch,mindmap,discovery"> C: Ich verliere schnell die Geduld und suche nach Abwechslung.</label>
+
+        <!-- Question 6 -->
+        <h2>6. Welche Filme oder Serien schaust du am liebsten?</h2>
+        <label><input type="radio" name="q6" value="save,beat,szenenplanung"> A: Spannende Thriller oder Abenteuer mit überraschenden Wendungen.</label>
+        <label><input type="radio" name="q6" value="story,heldenreise,dreiakt"> B: Dramen oder Coming-of-Age-Geschichten mit emotionaler Tiefe.</label>
+        <label><input type="radio" name="q6" value="worldbuilding,mindmap,discovery"> C: Fantasievolle Welten mit faszinierenden Charakteren und Details.</label>
+
+        <!-- Question 7 -->
+        <h2>7. Welche Art von Büchern interessiert dich am meisten?</h2>
+        <label><input type="radio" name="q7" value="schneeflocke,freytag,snowflake"> A: Bücher mit spannenden Handlungen, die einen fesseln.</label>
+        <label><input type="radio" name="q7" value="character,heldenreise,story"> B: Geschichten, die sich auf Charakterentwicklung konzentrieren.</label>
+        <label><input type="radio" name="q7" value="worldbuilding,discovery,mindmap"> C: Romane, die beeindruckende Welten und Atmosphären schaffen.</label>
+
+        <!-- Question 8 -->
+        <h2>8. Was ist dir an einer Geschichte wichtiger?</h2>
+        <label><input type="radio" name="q8" value="save,beat,freytag"> A: Eine logische Handlung mit einem klaren Anfang und Ende.</label>
+        <label><input type="radio" name="q8" value="character,heldenreise,story"> B: Die Entwicklung der Charaktere und ihre Beziehungen.</label>
+        <label><input type="radio" name="q8" value="worldbuilding,mindmap,discovery"> C: Die Welt, in der die Geschichte spielt, und deren Atmosphäre.</label>
+
+        <!-- Question 9 -->
+        <h2>9. Wie gehst du mit Feedback um?</h2>
+        <label><input type="radio" name="q9" value="schneeflocke,save,szenenplanung"> A: Ich nehme es ernst und passe meine Arbeit an.</label>
+        <label><input type="radio" name="q9" value="heldenreise,story,dreiakt"> B: Ich höre zu, entscheide aber, was ich umsetzen möchte.</label>
+        <label><input type="radio" name="q9" value="discovery,episodisch,reverse"> C: Ich lasse es beiseite und folge meiner Intuition.</label>
+
+        <!-- Question 10 -->
+        <h2>10. Wie wichtig ist dir Humor in deiner Arbeit?</h2>
+        <label><input type="radio" name="q10" value="story,episodisch,beat"> A: Sehr wichtig – Humor ist zentral.</label>
+        <label><input type="radio" name="q10" value="heldenreise,dreiakt,save"> B: Es ist schön, aber nicht entscheidend.</label>
+        <label><input type="radio" name="q10" value="freytag,snowflake,schneeflocke"> C: Ich konzentriere mich mehr auf ernste und tiefgründige Themen.</label>
+
+        <!-- Question 11 -->
+        <h2>11. Wie stehst du dazu, etwas Neues auszuprobieren?</h2>
+        <label><input type="radio" name="q11" value="discovery,mindmap,worldbuilding"> A: Ich liebe es, Neues auszuprobieren und zu lernen.</label>
+        <label><input type="radio" name="q11" value="heldenreise,story,dreiakt"> B: Ich bin offen, brauche aber Zeit, um mich daran zu gewöhnen.</label>
+        <label><input type="radio" name="q11" value="freytag,save,szenenplanung"> C: Ich ziehe es vor, bei Altbewährtem zu bleiben.</label>
+
+        <!-- Question 12 -->
+        <h2>12. Wie präsentierst du deine Arbeit gegenüber anderen?</h2>
+        <label><input type="radio" name="q12" value="save,beat,freytag"> A: Selbstbewusst und mit Stolz.</label>
+        <label><input type="radio" name="q12" value="heldenreise,story,dreiakt"> B: Mit Zurückhaltung, aber Überzeugung.</label>
+        <label><input type="radio" name="q12" value="discovery,episodisch,reverse"> C: Ich habe oft Zweifel, ob sie gut genug ist.</label>
+
+        <!-- Question 13 -->
+        <h2>13. Wie gehst du mit komplexen Themen in einer Geschichte um?</h2>
+        <label><input type="radio" name="q13" value="freytag,schneeflocke,snowflake"> A: Ich plane sie strukturiert und detailliert.</label>
+        <label><input type="radio" name="q13" value="heldenreise,story,dreiakt"> B: Ich lasse mich von den Charakteren und ihrem Weg leiten.</label>
+        <label><input type="radio" name="q13" value="discovery,mindmap,reverse"> C: Ich entwickle sie spontan während des Schreibens.</label>
+
+        <!-- Question 14 -->
+        <h2>14. Wie wichtig ist es dir, dass Leser sich mit deinen Figuren identifizieren können?</h2>
+        <label><input type="radio" name="q14" value="character,heldenreise,story"> A: Sehr wichtig – sie sind das Herz der Geschichte.</label>
+        <label><input type="radio" name="q14" value="dreiakt,save,szenenplanung"> B: Wichtig, aber die Handlung steht im Vordergrund.</label>
+        <label><input type="radio" name="q14" value="worldbuilding,mindmap,discovery"> C: Weniger wichtig – die Welt und Atmosphäre zählen mehr.</label>
+
+        <!-- Question 15 -->
+        <h2>15. Wie gehst du mit Schreibblockaden um?</h2>
+        <label><input type="radio" name="q15" value="schneeflocke,freytag,snowflake"> A: Ich analysiere das Problem und plane neu.</label>
+        <label><input type="radio" name="q15" value="heldenreise,story,dreiakt"> B: Ich lasse mich von anderen Aspekten inspirieren.</label>
+        <label><input type="radio" name="q15" value="discovery,mindmap,episodisch"> C: Ich schreibe einfach drauflos, ohne nachzudenken.</label>
+
+        <!-- Question 16 -->
+        <h2>16. Was inspiriert dich am meisten an Geschichten?</h2>
+        <label><input type="radio" name="q16" value="save,freytag,beat"> A: Eine spannende Handlung mit Überraschungen.</label>
+        <label><input type="radio" name="q16" value="character,heldenreise,story"> B: Tiefgründige Charaktere und Emotionen.</label>
+        <label><input type="radio" name="q16" value="worldbuilding,mindmap,discovery"> C: Fantasievolle Welten und Settings.</label>
+
+        <!-- Question 17 -->
+        <h2>17. Wie gehst du mit Risiken in einem kreativen Projekt um?</h2>
+        <label><input type="radio" name="q17" value="schneeflocke,save,freytag"> A: Ich minimiere Risiken durch Planung.</label>
+        <label><input type="radio" name="q17" value="heldenreise,story,dreiakt"> B: Ich improvisiere und suche nach einem neuen Ansatz.</label>
+        <label><input type="radio" name="q17" value="discovery,mindmap,episodisch"> C: Ich lasse mich von Risiken nicht bremsen und experimentiere.</label>
+
+        <!-- Question 18 -->
+        <h2>18. Wie gehst du mit mehreren Aufgaben gleichzeitig um?</h2>
+        <label><input type="radio" name="q18" value="schneeflocke,snowflake,szenenplanung"> A: Ich priorisiere und erledige sie der Reihe nach.</label>
+        <label><input type="radio" name="q18" value="heldenreise,story,dreiakt"> B: Ich arbeite an mehreren Aufgaben gleichzeitig.</label>
+        <label><input type="radio" name="q18" value="discovery,mindmap,reverse"> C: Ich lasse mich treiben und entscheide spontan.</label>
+
+        <!-- Question 19 -->
+        <h2>19. Was ist dir an einem kreativen Prozess wichtiger?</h2>
+        <label><input type="radio" name="q19" value="schneeflocke,save,freytag"> A: Eine klare Struktur und ein Ziel.</label>
+        <label><input type="radio" name="q19" value="heldenreise,story,episodisch"> B: Der kreative Prozess und das Experimentieren.</label>
+        <label><input type="radio" name="q19" value="worldbuilding,mindmap,discovery"> C: Die Freiheit, etwas Neues zu erschaffen.</label>
+
+        <!-- Question 20 -->
+        <h2>20. Welche Rolle spielt Spannung in deinen Geschichten?</h2>
+        <label><input type="radio" name="q20" value="save,freytag,beat"> A: Spannung ist das zentrale Element.</label>
+        <label><input type="radio" name="q20" value="character,heldenreise,story"> B: Spannung ergibt sich aus den Charakteren.</label>
+        <label><input type="radio" name="q20" value="worldbuilding,mindmap,discovery"> C: Spannung ergibt sich aus der Welt und Atmosphäre.</label>
+
+        <button type="button" onclick="calculateResults()">Ergebnisse anzeigen</button>
+    </form>
+
+    <div id="results" style="margin-top: 20px; display: none;">
+        <h2>Deine idealen Schreibtechniken:</h2>
+        <p id="resultText"></p>
     </div>
-    <div class="question">
-      <h3>Wie gehst du mit einem überfüllten Schreibtisch um?</h3>
-      <div class="options">
-        <label><input type="radio" name="q2" value="A"> Ich sortiere alles und mache einen Plan, wie ich vorgehen werde.</label>
-        <label><input type="radio" name="q2" value="B"> Ich räume die wichtigsten Dinge auf und kümmere mich um den Rest später.</label>
-        <label><input type="radio" name="q2" value="C"> Ich lasse es erstmal so und arbeite einfach drumherum.</label>
-      </div>
-    </div>
-    <div class="question">
-      <h3>Wenn du eine größere Aufgabe hast, wie gehst du sie an?</h3>
-      <div class="options">
-        <label><input type="radio" name="q3" value="A"> Ich plane alles im Voraus, um sicherzustellen, dass nichts schiefgeht.</label>
-        <label><input type="radio" name="q3" value="B"> Ich mache einen groben Plan, aber passe ihn unterwegs an.</label>
-        <label><input type="radio" name="q3" value="C"> Ich fange einfach an und lasse die Sache sich entwickeln.</label>
-      </div>
-    </div>
-    <div class="question">
-      <h3>Wie entscheidest du, was du am Wochenende machen möchtest?</h3>
-      <div class="options">
-        <label><input type="radio" name="q4" value="A"> Ich plane Aktivitäten und buche sie im Voraus.</label>
-        <label><input type="radio" name="q4" value="B"> Ich überlege spontan, worauf ich Lust habe, und entscheide dann.</label>
-        <label><input type="radio" name="q4" value="C"> Ich lasse den Tag einfach kommen und entscheide nach Laune.</label>
-      </div>
-    </div>
-    <div class="question">
-      <h3>Was macht dir bei einem kreativen Projekt am meisten Spaß?</h3>
-      <div class="options">
-        <label><input type="radio" name="q5" value="A"> Die Planung und Organisation des Projekts.</label>
-        <label><input type="radio" name="q5" value="B"> Das Finden neuer Ideen während des Prozesses.</label>
-        <label><input type="radio" name="q5" value="C"> Die kreative Freiheit, spontan zu arbeiten.</label>
-      </div>
-    </div>
-    <!-- Weitere Fragen folgen nach dem gleichen Muster -->
-    <button type="button" class="btn" onclick="calculateResult()">Ergebnis anzeigen</button>
-  </form>
+</div>
 
-  <div id="result"></div>
+<script>
+    function calculateResults() {
+        const form = document.getElementById('surveyForm');
+        const formData = new FormData(form);
+        const results = {};
 
-  <script>
-    function calculateResult() {
-      // Antworten sammeln
-      const answers = {
-        q1: document.querySelector('input[name="q1"]:checked')?.value,
-        q2: document.querySelector('input[name="q2"]:checked')?.value,
-        q3: document.querySelector('input[name="q3"]:checked')?.value,
-        q4: document.querySelector('input[name="q4"]:checked')?.value,
-        q5: document.querySelector('input[name="q5"]:checked')?.value
-        // Weitere Fragen hinzufügen
-      };
+        formData.forEach(value => {
+            const techniques = value.split(',');
+            techniques.forEach(tech => {
+                results[tech] = (results[tech] || 0) + 1;
+            });
+        });
 
-      // Punkte-System
-      const points = {
-        Schneeflocken: 0,
-        SaveTheCat: 0,
-        Heldenreise: 0,
-        DiscoveryWriting: 0
-      };
+        const sortedResults = Object.entries(results).sort((a, b) => b[1] - a[1]);
+        const topTechniques = sortedResults.slice(0, 2).map(entry => entry[0]);
 
-      // Punkte zuweisen basierend auf den Antworten
-      if (answers.q1 === 'A') points.Schneeflocken += 3;
-      if (answers.q1 === 'B') points.Heldenreise += 2;
-      if (answers.q1 === 'C') points.DiscoveryWriting += 1;
-
-      if (answers.q2 === 'A') points.Schneeflocken += 3;
-      if (answers.q2 === 'B') points.SaveTheCat += 2;
-      if (answers.q2 === 'C') points.DiscoveryWriting += 1;
-
-      if (answers.q3 === 'A') points.Schneeflocken += 3;
-      if (answers.q3 === 'B') points.Heldenreise += 2;
-      if (answers.q3 === 'C') points.DiscoveryWriting += 1;
-
-      if (answers.q4 === 'A') points.SaveTheCat += 3;
-      if (answers.q4 === 'B') points.Heldenreise += 2;
-      if (answers.q4 === 'C') points.DiscoveryWriting += 1;
-
-      if (answers.q5 === 'A') points.Schneeflocken += 3;
-      if (answers.q5 === 'B') points.DiscoveryWriting += 2;
-      if (answers.q5 === 'C') points.EpisodischeMethode += 1;
-
-      // Ergebnisse berechnen
-      const sortedResults = Object.entries(points).sort((a, b) => b[1] - a[1]);
-      const topResult = sortedResults[0][0];
-      const secondResult = sortedResults[1][0];
-
-      // Ergebnis anzeigen
-      const resultDiv = document.getElementById('result');
-      resultDiv.style.display = 'block';
-      resultDiv.innerHTML = `<h2>Deine empfohlenen Schreibtechniken:</h2>
-        <p>1. ${topResult}</p>
-        <p>2. ${secondResult}</p>`;
+        document.getElementById('resultText').innerText = `Wir empfehlen dir: ${topTechniques.join(' und ')}.`;
+        document.getElementById('results').style.display = 'block';
     }
-  </script>
+</script>
 </body>
 </html>
