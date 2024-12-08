@@ -192,14 +192,13 @@
         <p id="resultText"></p>
     </div>
 </div>
-
 <script>
     function calculateResults() {
         const form = document.getElementById('surveyForm');
         const formData = new FormData(form);
         const results = {};
 
-        // Map short codes to full technique names
+        // Mapping of short codes to full technique names
         const techniqueMapping = {
             schneeflocke: 'Die Schneeflockenmethode',
             save: 'Die Save-the-Cat-Methode',
