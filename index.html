@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schreibtechniken Umfrage</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-    body {
+   <style>
+        body {
         font-family: 'Merriweather', serif;
         line-height: 1.8;
         background-color: #fdfaf6;
@@ -22,42 +22,38 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         max-width: 800px;
     }
-    h1, h2 {
-        font-family: 'Playfair Display', serif;
-        color: #3c2f2f;
-    }
-    form label {
-        display: block;
-        margin-bottom: 10px; /* Abstand zwischen den Antworten */
-    }
-    button {
-        background-color: #d4a373;
-        color: #fff;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 100%;
-        font-size: 1rem;
-    }
-    button:hover {
-        background-color: #b08968;
-    }
-    @media (max-width: 768px) {
-        .container {
-            padding: 20px;
-            margin: 10px;
-            box-shadow: none;
-        }
         h1, h2 {
-            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            color: #3c2f2f;
         }
         button {
-            padding: 15px;
+            background-color: #d4a373;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
             font-size: 1rem;
         }
-    }
-</style>
+        button:hover {
+            background-color: #b08968;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+                box-shadow: none;
+            }
+            h1, h2 {
+                font-size: 1.5rem;
+            }
+            button {
+                padding: 15px;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -198,7 +194,7 @@
         const formData = new FormData(form);
         const results = {};
 
-        // Mapping of short codes to full technique names
+        // Map short codes to full technique names
         const techniqueMapping = {
             schneeflocke: 'Die Schneeflockenmethode',
             save: 'Die Save-the-Cat-Methode',
@@ -217,27 +213,34 @@
             freytag: 'Die Freytag-Pyramide'
         };
 
-        // Collect all questions
+        // Collect all question inputs
         const questions = document.querySelectorAll('[name^="q"]');
-        const totalQuestions = questions.length;
+        const totalQuestions = Array.from(new Set(
+            Array.from(questions).map(question => question.name)
+        ));
         const answeredQuestions = new Set();
 
-        // Read and count responses
-        formData.forEach((value, key) => {
-            const techniques = value.split(',');
-            techniques.forEach(tech => {
-                results[tech] = (results[tech] || 0) + 1;
-            });
-            answeredQuestions.add(key);
-        });
-
         // Check if all questions have been answered
-        if (answeredQuestions.size < totalQuestions) {
+        for (const question of totalQuestions) {
+            if (formData.has(question)) {
+                answeredQuestions.add(question);
+            }
+        }
+
+        if (answeredQuestions.size < totalQuestions.length) {
             document.getElementById('resultText').innerText =
                 'Bitte beantworte alle Fragen, bevor du deine Ergebnisse anzeigen lässt.';
             document.getElementById('results').style.display = 'block';
             return;
         }
+
+        // Read and count responses
+        formData.forEach((value) => {
+            const techniques = value.split(',');
+            techniques.forEach(tech => {
+                results[tech] = (results[tech] || 0) + 1;
+            });
+        });
 
         // Sort results and select the top 2 techniques
         const sortedResults = Object.entries(results).sort((a, b) => b[1] - a[1]);
