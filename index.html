@@ -5,26 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schreibtechniken Umfrage</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-   <style>
+    <style>
         body {
-        font-family: 'Merriweather', serif;
-        line-height: 1.8;
-        background-color: #fdfaf6;
-        color: #5a4d4d;
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-        background: #faf3e1;
-        padding: 30px;
-        margin: 20px auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        max-width: 800px;
-    }
-        h1, h2 {
+            font-family: 'Merriweather', serif;
+            line-height: 1.8;
+            background-color: #fdfaf6;
+            color: #5a4d4d;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: #f7f1f1;
+            padding: 30px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+        h1 {
             font-family: 'Playfair Display', serif;
             color: #3c2f2f;
+            font-size: 2rem;
+        }
+        h2 {
+            font-family: 'Merriweather', serif;
+            color: #3c2f2f;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
         button {
             background-color: #d4a373;
@@ -39,14 +47,22 @@
         button:hover {
             background-color: #b08968;
         }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
                 margin: 10px;
                 box-shadow: none;
             }
-            h1, h2 {
+            h1 {
                 font-size: 1.5rem;
+            }
+            h2 {
+                font-size: 0.9rem;
             }
             button {
                 padding: 15px;
