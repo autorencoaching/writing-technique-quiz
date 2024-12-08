@@ -214,16 +214,22 @@
             freytag: 'Die Freytag-Pyramide'
         };
 
+        // Collect all questions
+        const questions = document.querySelectorAll('[name^="q"]');
+        const totalQuestions = questions.length;
+        const answeredQuestions = new Set();
+
         // Read and count responses
-        formData.forEach(value => {
+        formData.forEach((value, key) => {
             const techniques = value.split(',');
             techniques.forEach(tech => {
                 results[tech] = (results[tech] || 0) + 1;
             });
+            answeredQuestions.add(key);
         });
 
-        // Handle the case where no responses are given
-        if (Object.keys(results).length === 0) {
+        // Check if all questions have been answered
+        if (answeredQuestions.size < totalQuestions) {
             document.getElementById('resultText').innerText =
                 'Bitte beantworte alle Fragen, bevor du deine Ergebnisse anzeigen lässt.';
             document.getElementById('results').style.display = 'block';
