@@ -3,269 +3,448 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schreibtechniken Umfrage</title>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Merriweather', serif;
-            line-height: 1.8;
-            background-color: #fdfaf6;
-            color: #5a4d4d;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            background: #f7f1f1;
-            padding: 30px;
-            margin: 20px auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-        }
-        h1 {
-            font-family: 'Playfair Display', serif;
-            color: #3c2f2f;
-            font-size: 2rem;
-        }
-        h2 {
-            font-family: 'Merriweather', serif;
-            color: #3c2f2f;
-            font-size: 1rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        button {
-            background-color: #d4a373;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1rem;
-        }
-        button:hover {
-            background-color: #b08968;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-        }
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-                margin: 10px;
-                box-shadow: none;
-            }
-            h1 {
-                font-size: 1.5rem;
-            }
-            h2 {
-                font-size: 0.9rem;
-            }
-            button {
-                padding: 15px;
-                font-size: 1rem;
-            }
-        }
-    </style>
+    <title>Schreibtechnik Analyse</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2 {
+        color: #444;
+    }
+    label {
+        display: block;
+        margin: 10px 0 5px;
+    }
+    button {
+        background-color: #5cb85c;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #4cae4c;
+    }
+    button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+</style>
 </head>
 <body>
 <div class="container">
-    <h1>Welche Schreibtechnik passt zu dir?</h1>
+    <h1>Finde deine ideale Schreibtechnik</h1>
     <form id="surveyForm">
 
-        <!-- Question 1 -->
-        <h2>1. Wie gehst du mit neuen Projekten oder Aufgaben um?</h2>
-        <label><input type="radio" name="q1" value="schneeflocke,save,beat"> A: Ich plane Schritt für Schritt im Voraus.</label>
-        <label><input type="radio" name="q1" value="heldenreise,story,dreiakt"> B: Ich starte mit einer groben Idee und passe unterwegs an.</label>
-        <label><input type="radio" name="q1" value="discovery,mindmap,character"> C: Ich beginne einfach und lasse mich von meiner Intuition leiten.</label>
+<div id="errorMessage" style="color: red; display: none; margin-top: 10px;">
+    Bitte beantworte alle Fragen, bevor du die Ergebnisse anzeigen lässt!
+</div>
 
-        <!-- Question 2 -->
-        <h2>2. Wie reagierst du, wenn ein Plan scheitert oder sich die Umstände ändern?</h2>
-        <label><input type="radio" name="q2" value="schneeflocke,snowflake,beat"> A: Ich mache einen neuen Plan, um wieder auf Kurs zu kommen.</label>
-        <label><input type="radio" name="q2" value="story,heldenreise,dreiakt"> B: Ich improvisiere und suche nach einer anderen Lösung.</label>
-        <label><input type="radio" name="q2" value="discovery,reverse,mindmap"> C: Ich lasse das Problem ruhen und warte auf Inspiration.</label>
+<!-- Frage 1 -->
+<h2>1. Wie planst du deine Tage?</h2>
+<label>
+    <input type="radio" name="q1" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 1, "bauchCZ": 1, "pragHB": 4, "pragCZ": 4, "perfHB": 3, "perfCZ": 3, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: I write to-do lists or create schedules.">
+    A: Ich schreibe mir To-Do-Listen oder erstelle Zeitpläne, um nichts zu vergessen.
+</label>
+<label>
+    <input type="radio" name="q1" value='{"planerHB": 3, "planerCZ": 3, "bauchHB": 4, "bauchCZ": 4, "pragHB": 5, "pragCZ": 5, "perfHB": 2, "perfCZ": 2, "erzHB": 3, "erzCZ": 3}' aria-label="Option B: I keep a rough overview and adapt as needed.">
+    B: Ich habe einen groben Überblick, passe meinen Ablauf aber auch oft an.
+</label>
+<label>
+    <input type="radio" name="q1" value='{"planerHB": 1, "planerCZ": 1, "bauchHB": 5, "bauchCZ": 5, "pragHB": 2, "pragCZ": 2, "perfHB": 1, "perfCZ": 1, "erzHB": 4, "erzCZ": 4}' aria-label="Option C: I decide based on what I feel like doing.">
+    C: Ich entscheide einfach, worauf ich Lust habe.
+</label>
 
-        <!-- Question 3 -->
-        <h2>3. Wie wichtig ist es dir, dass deine Arbeit perfekt ist?</h2>
-        <label><input type="radio" name="q3" value="freytag,snowflake,save"> A: Sehr wichtig – ich strebe Perfektion an.</label>
-        <label><input type="radio" name="q3" value="dreiakt,story,beat"> B: Es ist hilfreich, aber nicht zwingend notwendig.</label>
-        <label><input type="radio" name="q3" value="discovery,mindmap,episodisch"> C: Ich konzentriere mich auf den kreativen Prozess, nicht auf Perfektion.</label>
+<!-- Frage 2 -->
+<h2>2. Wie gehst du mit einem überfüllten Schreibtisch oder unordentlichen Zimmer um?</h2>
+<label>
+    <input type="radio" name="q2" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 1, "bauchCZ": 1, "pragHB": 3, "pragCZ": 3, "perfHB": 4, "perfCZ": 4, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: Everything has its place; I keep it tidy.">
+    A: Bei mir hat alles seinen Platz, es gibt keinen überfüllten Schreibtisch oder unordentliches Zimmer.
+</label>
+<label>
+    <input type="radio" name="q2" value='{"planerHB": 4, "planerCZ": 4, "bauchHB": 2, "bauchCZ": 2, "pragHB": 5, "pragCZ": 5, "perfHB": 3, "perfCZ": 3, "erzHB": 3, "erzCZ": 3}' aria-label="Option B: I tidy up just enough to create space.">
+    B: Ich räume die wichtigsten Dinge auf, um ein bisschen Platz zu schaffen.
+</label>
+<label>
+    <input type="radio" name="q2" value='{"planerHB": 1, "planerCZ": 1, "bauchHB": 5, "bauchCZ": 5, "pragHB": 2, "pragCZ": 2, "perfHB": 1, "perfCZ": 1, "erzHB": 4, "erzCZ": 4}' aria-label="Option C: I feel comfortable in my chaos.">
+    C: Ich fühle mich wohl in meinem Chaos und arbeite einfach drumherum.
+</label>
 
-        <!-- Question 4 -->
-        <h2>4. Wie gehst du mit mehreren Ideen gleichzeitig um?</h2>
-        <label><input type="radio" name="q4" value="schneeflocke,szenenplanung,save"> A: Ich priorisiere und konzentriere mich auf die beste Idee.</label>
-        <label><input type="radio" name="q4" value="story,modular,heldenreise"> B: Ich probiere verschiedene Ideen aus und kombiniere sie.</label>
-        <label><input type="radio" name="q4" value="mindmap,reverse,discovery"> C: Ich lasse alle Ideen nebeneinander existieren und sortiere später aus.</label>
+<!-- Frage 3 -->
+<h2>3. Wie gehst du mit Terminen oder Deadlines um?</h2>
+<label>
+    <input type="radio" name="q3" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 1, "bauchCZ": 1, "pragHB": 4, "pragCZ": 4, "perfHB": 3, "perfCZ": 3, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: I plan ahead to meet deadlines.">
+    A: Ich plane alles rechtzeitig, um die Vorgaben zu erfüllen.
+</label>
+<label>
+    <input type="radio" name="q3" value='{"planerHB": 3, "planerCZ": 3, "bauchHB": 4, "bauchCZ": 4, "pragHB": 5, "pragCZ": 5, "perfHB": 2, "perfCZ": 2, "erzHB": 3, "erzCZ": 3}' aria-label="Option B: I don’t need a plan but still finish on time.">
+    B: Ich benötige keinen Plan, werde aber trotzdem rechtzeitig fertig.
+</label>
+<label>
+    <input type="radio" name="q3" value='{"planerHB": 1, "planerCZ": 1, "bauchHB": 5, "bauchCZ": 5, "pragHB": 3, "pragCZ": 3, "perfHB": 1, "perfCZ": 1, "erzHB": 4, "erzCZ": 4}' aria-label="Option C: I work under pressure at the last minute.">
+    C: Ich warte meistens bis zur letzten Minute und arbeite dann unter Druck.
+</label>
 
-        <!-- Question 5 -->
-        <h2>5. Wie gehst du mit langen und komplexen Aufgaben um?</h2>
-        <label><input type="radio" name="q5" value="freytag,szenenplanung,snowflake"> A: Ich arbeite Schritt für Schritt daran.</label>
-        <label><input type="radio" name="q5" value="heldenreise,story,dreiakt"> B: Ich lasse Raum für Anpassungen, bleibe aber dran.</label>
-        <label><input type="radio" name="q5" value="episodisch,mindmap,discovery"> C: Ich verliere schnell die Geduld und suche nach Abwechslung.</label>
+<!-- Frage 4 -->
+<h2>4. Was machst du, wenn du dich zwischen zwei Optionen entscheiden musst?</h2>
+<label>
+    <input type="radio" name="q4" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 2, "bauchCZ": 2, "pragHB": 4, "pragCZ": 4, "perfHB": 3, "perfCZ": 3, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: I weigh the pros and cons.">
+    A: Ich wäge die Vor- und Nachteile ab und entscheide dann.
+</label>
+<label>
+    <input type="radio" name="q4" value='{"planerHB": 2, "planerCZ": 2, "bauchHB": 5, "bauchCZ": 5, "pragHB": 3, "pragCZ": 3, "perfHB": 2, "perfCZ": 2, "erzHB": 4, "erzCZ": 4}' aria-label="Option B: I trust my gut feeling.">
+    B: Ich höre auf mein Bauchgefühl und entscheide danach.
+</label>
+<label>
+    <input type="radio" name="q4" value='{"planerHB": 1, "planerCZ": 1, "bauchHB": 4, "bauchCZ": 4, "pragHB": 2, "pragCZ": 2, "perfHB": 1, "perfCZ": 1, "erzHB": 3, "erzCZ": 3}' aria-label="Option C: I put off deciding until the last moment.">
+    C: Ich schiebe die Entscheidung so lange wie möglich vor mir her und treffe sie dann spontan.
+</label>
 
-        <!-- Question 6 -->
-        <h2>6. Welche Filme oder Serien schaust du am liebsten?</h2>
-        <label><input type="radio" name="q6" value="save,beat,szenenplanung"> A: Spannende Thriller oder Abenteuer mit überraschenden Wendungen.</label>
-        <label><input type="radio" name="q6" value="story,heldenreise,dreiakt"> B: Dramen oder Coming-of-Age-Geschichten mit emotionaler Tiefe.</label>
-        <label><input type="radio" name="q6" value="worldbuilding,mindmap,discovery"> C: Fantasievolle Welten mit faszinierenden Charakteren und Details.</label>
+<!-- Frage 5 -->
+<h2>5. Wie gehst du vor, wenn du ein neues Hobby ausprobieren möchtest?</h2>
+<label>
+    <input type="radio" name="q5" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 2, "bauchCZ": 2, "pragHB": 3, "pragCZ": 3, "perfHB": 4, "perfCZ": 4, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: I research what I need and follow instructions.">
+    A: Ich recherchiere, was ich dafür benötige, und folge der Anleitung.
+</label>
+<label>
+    <input type="radio" name="q5" value='{"planerHB": 3, "planerCZ": 3, "bauchHB": 5, "bauchCZ": 5, "pragHB": 4, "pragCZ": 4, "perfHB": 2, "perfCZ": 2, "erzHB": 3, "erzCZ": 3}' aria-label="Option B: I try different options and do what I enjoy.">
+    B: Ich probiere verschiedene Angebote aus und mache, was mir gefällt.
+</label>
+<label>
+    <input type="radio" name="q5" value='{"planerHB": 1, "planerCZ": 1, "bauchHB": 5, "bauchCZ": 5, "pragHB": 2, "pragCZ": 2, "perfHB": 1, "perfCZ": 1, "erzHB": 4, "erzCZ": 4}' aria-label="Option C: I just start and see what happens.">
+    C: Ich fange einfach an und lasse den Rest auf mich zukommen.
+</label>
 
-        <!-- Question 7 -->
-        <h2>7. Welche Art von Büchern interessiert dich am meisten?</h2>
-        <label><input type="radio" name="q7" value="schneeflocke,freytag,snowflake"> A: Bücher mit spannenden Handlungen, die einen fesseln.</label>
-        <label><input type="radio" name="q7" value="character,heldenreise,story"> B: Geschichten, die sich auf Charakterentwicklung konzentrieren.</label>
-        <label><input type="radio" name="q7" value="worldbuilding,discovery,mindmap"> C: Romane, die beeindruckende Welten und Atmosphären schaffen.</label>
+<!-- Frage 6 -->
+<h2>6. Wie entscheidest du, was auf deinem Einkaufszettel stehen sollte?</h2>
+<label>
+    <input type="radio" name="q6" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 1, "bauchCZ": 1, "pragHB": 4, "pragCZ": 4, "perfHB": 3, "perfCZ": 3, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: I plan meals in advance and write down the ingredients I need.">
+    A: Ich plane Mahlzeiten im Voraus und schreibe die Zutaten dafür auf die Liste.
+</label>
+<label>
+    <input type="radio" name="q6" value='{"planerHB": 3, "planerCZ": 3, "bauchHB": 4, "bauchCZ": 4, "pragHB": 5, "pragCZ": 5, "perfHB": 2, "perfCZ": 2, "erzHB": 3, "erzCZ": 3}' aria-label="Option B: I know what I need at home and buy the rest spontaneously.">
+    B: Ich weiß, was ich zu Hause habe, und kaufe den Rest spontan.
+</label>
+<label>
+    <input type="radio" name="q6" value='{"planerHB": 1, "planerCZ": 1, "bauchHB": 5, "bauchCZ": 5, "pragHB": 2, "pragCZ": 2, "perfHB": 1, "perfCZ": 1, "erzHB": 4, "erzCZ": 4}' aria-label="Option C: I let myself be inspired by the offers while shopping.">
+    C: Ich lasse mich während des Einkaufs von den Angeboten inspirieren.
+</label>
 
-        <!-- Question 8 -->
-        <h2>8. Was ist dir an einer Geschichte wichtiger?</h2>
-        <label><input type="radio" name="q8" value="save,beat,freytag"> A: Eine logische Handlung mit einem klaren Anfang und Ende.</label>
-        <label><input type="radio" name="q8" value="character,heldenreise,story"> B: Die Entwicklung der Charaktere und ihre Beziehungen.</label>
-        <label><input type="radio" name="q8" value="worldbuilding,mindmap,discovery"> C: Die Welt, in der die Geschichte spielt, und deren Atmosphäre.</label>
+<!-- Frage 7 -->
+<h2>7. Was macht dir bei einem kreativen Projekt am meisten Spaß?</h2>
+<label>
+    <input type="radio" name="q7" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 1, "bauchCZ": 1, "pragHB": 4, "pragCZ": 4, "perfHB": 3, "perfCZ": 3, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: The organization of the project.">
+    A: Die Organisation des Projekts.
+</label>
+<label>
+    <input type="radio" name="q7" value='{"planerHB": 3, "planerCZ": 3, "bauchHB": 5, "bauchCZ": 5, "pragHB": 3, "pragCZ": 3, "perfHB": 2, "perfCZ": 2, "erzHB": 4, "erzCZ": 4}' aria-label="Option B: The ideas that come to me during the process.">
+    B: Die Ideenfindung während des Prozesses.
+</label>
+<label>
+    <input type="radio" name="q7" value='{"planerHB": 2, "planerCZ": 2, "bauchHB": 4, "bauchCZ": 4, "pragHB": 2, "pragCZ": 2, "perfHB": 5, "perfCZ": 5, "erzHB": 4, "erzCZ": 4}' aria-label="Option C: The creative work during implementation.">
+    C: Die kreative Arbeit bei der Umsetzung.
+</label>
 
-        <!-- Question 9 -->
-        <h2>9. Wie gehst du mit Feedback um?</h2>
-        <label><input type="radio" name="q9" value="schneeflocke,save,szenenplanung"> A: Ich nehme es ernst und passe meine Arbeit an.</label>
-        <label><input type="radio" name="q9" value="heldenreise,story,dreiakt"> B: Ich höre zu, entscheide aber, was ich umsetzen möchte.</label>
-        <label><input type="radio" name="q9" value="discovery,episodisch,reverse"> C: Ich lasse es beiseite und folge meiner Intuition.</label>
+<!-- Frage 8 -->
+<h2>8. Was reizt dich an Geschichten oder Filmen?</h2>
+<label>
+    <input type="radio" name="q8" value='{"planerHB": 4, "planerCZ": 0, "bauchHB": 2, "bauchCZ": 0, "pragHB": 5, "pragCZ": 0, "perfHB": 4, "perfCZ": 0, "erzHB": 3, "erzCZ": 0}' aria-label="Option A: An exciting plot with many surprising twists.">
+    A: Eine spannende Handlung mit vielen überraschenden Wendungen.
+</label>
+<label>
+    <input type="radio" name="q8" value='{"planerHB": 0, "planerCZ": 2, "bauchHB": 0, "bauchCZ": 4, "pragHB": 0, "pragCZ": 3, "perfHB": 0, "perfCZ": 2, "erzHB": 0, "erzCZ": 5}' aria-label="Option B: The emotional depth and development of the main characters.">
+    B: Die emotionale Tiefe und Entwicklung der Hauptdarsteller.
+</label>
+<label>
+    <input type="radio" name="q8" value='{"planerHB": 2, "planerCZ": 2, "bauchHB": 5, "bauchCZ": 5, "pragHB": 3, "pragCZ": 3, "perfHB": 5, "perfCZ": 5, "erzHB": 4, "erzCZ": 4}' aria-label="Option C: The fascinating worlds.">
+    C: Die faszinierenden Welten.
+</label>
 
-        <!-- Question 10 -->
-        <h2>10. Wie wichtig ist dir Humor in deiner Arbeit?</h2>
-        <label><input type="radio" name="q10" value="story,episodisch,beat"> A: Sehr wichtig – Humor ist zentral.</label>
-        <label><input type="radio" name="q10" value="heldenreise,dreiakt,save"> B: Es ist schön, aber nicht entscheidend.</label>
-        <label><input type="radio" name="q10" value="freytag,snowflake,schneeflocke"> C: Ich konzentriere mich mehr auf ernste und tiefgründige Themen.</label>
+<!-- Frage 9 -->
+<h2>9. Wie erzählst du Freunden von einem Erlebnis?</h2>
+<label>
+    <input type="radio" name="q9" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 2, "bauchCZ": 2, "pragHB": 4, "pragCZ": 4, "perfHB": 4, "perfCZ": 4, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: Chronologically, from beginning to end.">
+    A: Chronologisch, von Anfang bis Ende.
+</label>
+<label>
+    <input type="radio" name="q9" value='{"planerHB": 3, "planerCZ": 3, "bauchHB": 5, "bauchCZ": 5, "pragHB": 4, "pragCZ": 4, "perfHB": 2, "perfCZ": 2, "erzHB": 4, "erzCZ": 4}' aria-label="Option B: I highlight only the most exciting and funny moments.">
+    B: Ich hebe nur die spannendsten und lustigsten Momente hervor.
+</label>
+<label>
+    <input type="radio" name="q9" value='{"planerHB": 2, "planerCZ": 2, "bauchHB": 5, "bauchCZ": 5, "pragHB": 2, "pragCZ": 2, "perfHB": 1, "perfCZ": 1, "erzHB": 4, "erzCZ": 4}' aria-label="Option C: I jump between moments depending on how the conversation develops.">
+    C: Ich springe zwischen den Momenten hin und her, je nachdem, wie sich das Gespräch entwickelt.
+</label>
 
-        <!-- Question 11 -->
-        <h2>11. Wie stehst du dazu, etwas Neues auszuprobieren?</h2>
-        <label><input type="radio" name="q11" value="discovery,mindmap,worldbuilding"> A: Ich liebe es, Neues auszuprobieren und zu lernen.</label>
-        <label><input type="radio" name="q11" value="heldenreise,story,dreiakt"> B: Ich bin offen, brauche aber Zeit, um mich daran zu gewöhnen.</label>
-        <label><input type="radio" name="q11" value="freytag,save,szenenplanung"> C: Ich ziehe es vor, bei Altbewährtem zu bleiben.</label>
+<!-- Frage 10 -->
+<h2>10. Was inspiriert dich am meisten?</h2>
+<label>
+    <input type="radio" name="q10" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 1, "bauchCZ": 1, "pragHB": 4, "pragCZ": 4, "perfHB": 3, "perfCZ": 3, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: I define my goals with a clear structure and don’t necessarily need outside inspiration.">
+    A: Ich definiere meine Ziele nach einer klaren Struktur und benötige nicht unbedingt Inspiration von außen.
+</label>
+<label>
+    <input type="radio" name="q10" value='{"planerHB": 0, "planerCZ": 2, "bauchHB": 0, "bauchCZ": 4, "pragHB": 0, "pragCZ": 3, "perfHB": 0, "perfCZ": 2, "erzHB": 0, "erzCZ": 5}' aria-label="Option B: Emotional topics and personal stories.">
+    B: Emotionale Themen und persönliche Geschichten.
+</label>
+<label>
+    <input type="radio" name="q10" value='{"planerHB": 2, "planerCZ": 0, "bauchHB": 5, "bauchCZ": 0, "pragHB": 3, "pragCZ": 0, "perfHB": 5, "perfCZ": 0, "erzHB": 4, "erzCZ": 0}' aria-label="Option C: A special atmosphere or a unique idea.">
+    C: Eine besondere Atmosphäre oder eine ausgefallene Idee.
+</label>
 
-        <!-- Question 12 -->
-        <h2>12. Wie präsentierst du deine Arbeit gegenüber anderen?</h2>
-        <label><input type="radio" name="q12" value="save,beat,freytag"> A: Selbstbewusst und mit Stolz.</label>
-        <label><input type="radio" name="q12" value="heldenreise,story,dreiakt"> B: Mit Zurückhaltung, aber Überzeugung.</label>
-        <label><input type="radio" name="q12" value="discovery,episodisch,reverse"> C: Ich habe oft Zweifel, ob sie gut genug ist.</label>
+<!-- Frage 11 -->
+<h2>11. Was macht dir mehr Spaß? Ein Puzzle zusammenzusetzen oder etwas zu malen?</h2>
+<label>
+    <input type="radio" name="q11" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 2, "bauchCZ": 2, "pragHB": 4, "pragCZ": 4, "perfHB": 5, "perfCZ": 5, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: I prefer puzzles.">
+    A: Ich puzzle lieber.
+</label>
+<label>
+    <input type="radio" name="q11" value='{"planerHB": 2, "planerCZ": 2, "bauchHB": 5, "bauchCZ": 5, "pragHB": 3, "pragCZ": 3, "perfHB": 4, "perfCZ": 4, "erzHB": 4, "erzCZ": 4}' aria-label="Option B: I like to draw because it helps me put ideas on paper.">
+    B: Ich zeichne gerne, weil ich so Ideen aus meinem Kopf auf Papier bringen kann.
+</label>
+<label>
+    <input type="radio" name="q11" value='{"planerHB": 1, "planerCZ": 1, "bauchHB": 4, "bauchCZ": 4, "pragHB": 3, "pragCZ": 3, "perfHB": 2, "perfCZ": 2, "erzHB": 3, "erzCZ": 3}' aria-label="Option C: Neither.">
+    C: Keins von beiden.
+</label>
 
-        <!-- Question 13 -->
-        <h2>13. Wie gehst du mit komplexen Themen in einer Geschichte um?</h2>
-        <label><input type="radio" name="q13" value="freytag,schneeflocke,snowflake"> A: Ich plane sie strukturiert und detailliert.</label>
-        <label><input type="radio" name="q13" value="heldenreise,story,dreiakt"> B: Ich lasse mich von den Charakteren und ihrem Weg leiten.</label>
-        <label><input type="radio" name="q13" value="discovery,mindmap,reverse"> C: Ich entwickle sie spontan während des Schreibens.</label>
+<!-- Frage 12 -->
+<h2>12. Wie reagierst du, wenn ein Plan nicht nach deinen Vorstellungen funktioniert?</h2>
+<label>
+    <input type="radio" name="q12" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 2, "bauchCZ": 2, "pragHB": 4, "pragCZ": 4, "perfHB": 4, "perfCZ": 4, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: I try to understand the problem and adjust my plan.">
+    A: Ich versuche, das Problem zu verstehen und passe meinen Plan an.
+</label>
+<label>
+    <input type="radio" name="q12" value='{"planerHB": 3, "planerCZ": 3, "bauchHB": 5, "bauchCZ": 5, "pragHB": 5, "pragCZ": 5, "perfHB": 3, "perfCZ": 3, "erzHB": 4, "erzCZ": 4}' aria-label="Option B: I improvise – there’s always a solution.">
+    B: Ich improvisiere – irgendwie findet man immer eine Lösung.
+</label>
+<label>
+    <input type="radio" name="q12" value='{"planerHB": 1, "planerCZ": 1, "bauchHB": 4, "bauchCZ": 4, "pragHB": 2, "pragCZ": 2, "perfHB": 2, "perfCZ": 2, "erzHB": 3, "erzCZ": 3}' aria-label="Option C: I set the plan aside and maybe try again later.">
+    C: Ich lasse den Plan ruhen und versuche es vielleicht später noch einmal.
+</label>
 
-        <!-- Question 14 -->
-        <h2>14. Wie wichtig ist es dir, dass Leser sich mit deinen Figuren identifizieren können?</h2>
-        <label><input type="radio" name="q14" value="character,heldenreise,story"> A: Sehr wichtig – sie sind das Herz der Geschichte.</label>
-        <label><input type="radio" name="q14" value="dreiakt,save,szenenplanung"> B: Wichtig, aber die Handlung steht im Vordergrund.</label>
-        <label><input type="radio" name="q14" value="worldbuilding,mindmap,discovery"> C: Weniger wichtig – die Welt und Atmosphäre zählen mehr.</label>
+<!-- Frage 13 -->
+<h2>13. Wie gehst du mit Stress um?</h2>
+<label>
+    <input type="radio" name="q13" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 1, "bauchCZ": 1, "pragHB": 4, "pragCZ": 4, "perfHB": 3, "perfCZ": 3, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: I structure my tasks, so I rarely experience stress.">
+    A: Da ich meine Aufgaben strukturiere, habe ich selten Stress.
+</label>
+<label>
+    <input type="radio" name="q13" value='{"planerHB": 3, "planerCZ": 3, "bauchHB": 5, "bauchCZ": 5, "pragHB": 4, "pragCZ": 4, "perfHB": 2, "perfCZ": 2, "erzHB": 4, "erzCZ": 4}' aria-label="Option B: I work intuitively and try to relax in between.">
+    B: Ich arbeite intuitiv und versuche, zwischendurch zu entspannen.
+</label>
+<label>
+    <input type="radio" name="q13" value='{"planerHB": 2, "planerCZ": 2, "bauchHB": 4, "bauchCZ": 4, "pragHB": 3, "pragCZ": 3, "perfHB": 2, "perfCZ": 2, "erzHB": 4, "erzCZ": 4}' aria-label="Option C: I take a break.">
+    C: Ich nehme mir eine Auszeit.
+</label>
 
-        <!-- Question 15 -->
-        <h2>15. Wie gehst du mit Schreibblockaden um?</h2>
-        <label><input type="radio" name="q15" value="schneeflocke,freytag,snowflake"> A: Ich analysiere das Problem und plane neu.</label>
-        <label><input type="radio" name="q15" value="heldenreise,story,dreiakt"> B: Ich lasse mich von anderen Aspekten inspirieren.</label>
-        <label><input type="radio" name="q15" value="discovery,mindmap,episodisch"> C: Ich schreibe einfach drauflos, ohne nachzudenken.</label>
+<!-- Frage 14 -->
+<h2>14. Was machst du, wenn eine Aufgabe dich überfordert?</h2>
+<label>
+    <input type="radio" name="q14" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 2, "bauchCZ": 2, "pragHB": 4, "pragCZ": 4, "perfHB": 4, "perfCZ": 4, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: I try to focus and find a structured way to handle it.">
+    A: Ich versuche zu fokussieren und einen strukturierten Weg zu finden.
+</label>
+<label>
+    <input type="radio" name="q14" value='{"planerHB": 3, "planerCZ": 3, "bauchHB": 5, "bauchCZ": 5, "pragHB": 5, "pragCZ": 5, "perfHB": 3, "perfCZ": 3, "erzHB": 4, "erzCZ": 4}' aria-label="Option B: I adjust my approach and solve it in my own way.">
+    B: Ich passe meinen Ansatz an und löse sie auf meine eigene Art.
+</label>
+<label>
+    <input type="radio" name="q14" value='{"planerHB": 1, "planerCZ": 1, "bauchHB": 4, "bauchCZ": 4, "pragHB": 2, "pragCZ": 2, "perfHB": 1, "perfCZ": 1, "erzHB": 3, "erzCZ": 3}' aria-label="Option C: I admit that I can’t complete this task.">
+    C: Ich gestehe mir ein, dass ich diese Aufgabe nicht schaffen werde.
+</label>
 
-        <!-- Question 16 -->
-        <h2>16. Was inspiriert dich am meisten an Geschichten?</h2>
-        <label><input type="radio" name="q16" value="save,freytag,beat"> A: Eine spannende Handlung mit Überraschungen.</label>
-        <label><input type="radio" name="q16" value="character,heldenreise,story"> B: Tiefgründige Charaktere und Emotionen.</label>
-        <label><input type="radio" name="q16" value="worldbuilding,mindmap,discovery"> C: Fantasievolle Welten und Settings.</label>
+<!-- Frage 15 -->
+<h2>15. Wie reagierst du, wenn du mehrere Aufgaben gleichzeitig erledigen musst?</h2>
+<label>
+    <input type="radio" name="q15" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 2, "bauchCZ": 2, "pragHB": 5, "pragCZ": 5, "perfHB": 4, "perfCZ": 4, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: I prioritize them and work on them step by step.">
+    A: Ich priorisiere sie und arbeite sie nach und nach ab.
+</label>
+<label>
+    <input type="radio" name="q15" value='{"planerHB": 3, "planerCZ": 3, "bauchHB": 5, "bauchCZ": 5, "pragHB": 4, "pragCZ": 4, "perfHB": 3, "perfCZ": 3, "erzHB": 4, "erzCZ": 4}' aria-label="Option B: I work on several tasks in parallel, depending on what fits.">
+    B: Ich arbeite parallel an mehreren Aufgaben, je nachdem, was gerade passt.
+</label>
+<label>
+    <input type="radio" name="q15" value='{"planerHB": 2, "planerCZ": 2, "bauchHB": 4, "bauchCZ": 4, "pragHB": 3, "pragCZ": 3, "perfHB": 2, "perfCZ": 2, "erzHB": 4, "erzCZ": 4}' aria-label="Option C: I focus on the most urgent tasks.">
+    C: Ich konzentriere mich auf die dringendsten Aufgaben.
+</label>
 
-        <!-- Question 17 -->
-        <h2>17. Wie gehst du mit Risiken in einem kreativen Projekt um?</h2>
-        <label><input type="radio" name="q17" value="schneeflocke,save,freytag"> A: Ich minimiere Risiken durch Planung.</label>
-        <label><input type="radio" name="q17" value="heldenreise,story,dreiakt"> B: Ich improvisiere und suche nach einem neuen Ansatz.</label>
-        <label><input type="radio" name="q17" value="discovery,mindmap,episodisch"> C: Ich lasse mich von Risiken nicht bremsen und experimentiere.</label>
+<!-- Frage 16 -->
+<h2>16. Wie gehst du mit Rückschlägen um?</h2>
+<label>
+    <input type="radio" name="q16" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 2, "bauchCZ": 2, "pragHB": 4, "pragCZ": 4, "perfHB": 4, "perfCZ": 4, "erzHB": 2, "erzCZ": 2}' aria-label="Option A: I try to understand what went wrong to do better next time.">
+    A: Ich versuche zu verstehen, was falsch gelaufen ist, um es das nächste Mal besser zu machen.
+</label>
+<label>
+    <input type="radio" name="q16" value='{"planerHB": 3, "planerCZ": 3, "bauchHB": 5, "bauchCZ": 5, "pragHB": 4, "pragCZ": 4, "perfHB": 3, "perfCZ": 3, "erzHB": 4, "erzCZ": 4}' aria-label="Option B: I change my approach and try a different path.">
+    B: Ich ändere meinen Ansatz spontan und versuche, auf einem anderen Weg weiterzukommen.
+</label>
+<label>
+    <input type="radio" name="q16" value='{"planerHB": 1, "planerCZ": 1, "bauchHB": 4, "bauchCZ": 4, "pragHB": 2, "pragCZ": 2, "perfHB": 1, "perfCZ": 1, "erzHB": 3, "erzCZ": 3}' aria-label="Option C: I withdraw and let time pass before I try again.">
+    C: Ich verkrieche mich und lasse Gras über die Sache wachsen.
+</label>
 
-        <!-- Question 18 -->
-        <h2>18. Wie gehst du mit mehreren Aufgaben gleichzeitig um?</h2>
-        <label><input type="radio" name="q18" value="schneeflocke,snowflake,szenenplanung"> A: Ich priorisiere und erledige sie der Reihe nach.</label>
-        <label><input type="radio" name="q18" value="heldenreise,story,dreiakt"> B: Ich arbeite an mehreren Aufgaben gleichzeitig.</label>
-        <label><input type="radio" name="q18" value="discovery,mindmap,reverse"> C: Ich lasse mich treiben und entscheide spontan.</label>
+<!-- Frage 17 -->
+<h2>17. Was motiviert dich, ein Projekt zu beenden?</h2>
+<label>
+    <input type="radio" name="q17" value='{"planerHB": 5, "planerCZ": 5, "bauchHB": 2, "bauchCZ": 2, "pragHB": 5, "pragCZ": 5, "perfHB": 4, "perfCZ": 4, "erzHB": 3, "erzCZ": 3}' aria-label="Option A: The sense of accomplishment.">
+    A: Das Gefühl, etwas erreicht zu haben.
+</label>
+<label>
+    <input type="radio" name="q17" value='{"planerHB": 2, "planerCZ": 2, "bauchHB": 5, "bauchCZ": 5, "pragHB": 4, "pragCZ": 4, "perfHB": 3, "perfCZ": 3, "erzHB": 5, "erzCZ": 5}' aria-label="Option B: The joy of the process and ideas.">
+    B: Die Freude am Prozess und an den Ideen.
+</label>
+<label>
+    <input type="radio" name="q17" value='{"planerHB": 1, "planerCZ": 1, "bauchHB": 5, "bauchCZ": 5, "pragHB": 3, "pragCZ": 3, "perfHB": 2, "perfCZ": 2, "erzHB": 5, "erzCZ": 5}' aria-label="Option C: Letting my creativity flow along the way.">
+    C: Meiner Kreativität auf dem Weg dahin freien Lauf lassen zu können.
+</label>
 
-        <!-- Question 19 -->
-        <h2>19. Was ist dir an einem kreativen Prozess wichtiger?</h2>
-        <label><input type="radio" name="q19" value="schneeflocke,save,freytag"> A: Eine klare Struktur und ein Ziel.</label>
-        <label><input type="radio" name="q19" value="heldenreise,story,episodisch"> B: Der kreative Prozess und das Experimentieren.</label>
-        <label><input type="radio" name="q19" value="worldbuilding,mindmap,discovery"> C: Die Freiheit, etwas Neues zu erschaffen.</label>
+<!-- Frage 18 -->
+<h2>18. Welche Filme schaust du am liebsten?</h2>
+<label>
+    <input type="radio" name="q18" value='{"planerHB": 4, "planerCZ": 4, "bauchHB": 2, "bauchCZ": 2, "pragHB": 5, "pragCZ": 5, "perfHB": 4, "perfCZ": 4, "erzHB": 3, "erzCZ": 3}' aria-label="Option A: Thrilling thrillers or adventure movies.">
+    A: Spannende Thriller oder Abenteuerfilme.
+</label>
+<label>
+    <input type="radio" name="q18" value='{"planerHB": 0, "planerCZ": 2, "bauchHB": 0, "bauchCZ": 4, "pragHB": 0, "pragCZ": 3, "perfHB": 0, "perfCZ": 3, "erzHB": 0, "erzCZ": 5}' aria-label="Option B: Dramatic stories with strong characters.">
+    B: Dramatische Geschichten mit starken Charakteren.
+</label>
+<label>
+    <input type="radio" name="q18" value='{"planerHB": 3, "planerCZ": 3, "bauchHB": 5, "bauchCZ": 5, "pragHB": 3, "pragCZ": 3, "perfHB": 5, "perfCZ": 5, "erzHB": 4, "erzCZ": 4}' aria-label="Option C: Imaginative stories in unique worlds.">
+    C: Fantasievolle Geschichten in einzigartigen Welten.
+</label>
 
-        <!-- Question 20 -->
-        <h2>20. Welche Rolle spielt Spannung in deinen Geschichten?</h2>
-        <label><input type="radio" name="q20" value="save,freytag,beat"> A: Spannung ist das zentrale Element.</label>
-        <label><input type="radio" name="q20" value="character,heldenreise,story"> B: Spannung ergibt sich aus den Charakteren.</label>
-        <label><input type="radio" name="q20" value="worldbuilding,mindmap,discovery"> C: Spannung ergibt sich aus der Welt und Atmosphäre.</label>
+<!-- Frage 19 -->
+<h2>19. Welche Art von Erzählungen magst du in Büchern oder Filmen?</h2>
+<label>
+    <input type="radio" name="q19" value='{"planerHB": 4, "planerCZ": 0, "bauchHB": 2, "bauchCZ": 0, "pragHB": 5, "pragCZ": 0, "perfHB": 4, "perfCZ": 0, "erzHB": 3, "erzCZ": 0}' aria-label="Option A: Series or books with many twists and cliffhangers.">
+    A: Serien oder Bücher mit vielen Wendungen und Cliffhangern.
+</label>
+<label>
+    <input type="radio" name="q19" value='{"planerHB": 0, "planerCZ": 2, "bauchHB": 0, "bauchCZ": 4, "pragHB": 0, "pragCZ": 3, "perfHB": 0, "perfCZ": 2, "erzHB": 0, "erzCZ": 5}' aria-label="Option B: Stories with emotional depth.">
+    B: Geschichten mit emotionalem Tiefgang.
+</label>
+<label>
+    <input type="radio" name="q19" value='{"planerHB": 3, "planerCZ": 0, "bauchHB": 5, "bauchCZ": 0, "pragHB": 2, "pragCZ": 0, "perfHB": 5, "perfCZ": 0, "erzHB": 4, "erzCZ": 0}' aria-label="Option C: Otherworldly tales that inspire or frighten.">
+    C: Fremde Welten, die zum Träumen anregen oder Furcht erzeugen.
+</label>
 
-        <button type="button" onclick="calculateResults()">Ergebnisse anzeigen</button>
-    </form>
+<!-- Frage 20 -->
+<h2>20. Was macht für dich in erster Linie eine gute Geschichte aus?</h2>
+<label>
+    <input type="radio" name="q20" value='{"planerHB": 5, "planerCZ": 0, "bauchHB": 2, "bauchCZ": 0, "pragHB": 5, "pragCZ": 0, "perfHB": 4, "perfCZ": 0, "erzHB": 3, "erzCZ": 0}' aria-label="Option A: An exciting plot with a satisfying ending.">
+    A: Eine spannende Handlung mit einem zufriedenstellenden Ende.
+</label>
+<label>
+    <input type="radio" name="q20" value='{"planerHB": 0, "planerCZ": 2, "bauchHB": 0, "bauchCZ": 4, "pragHB": 0, "pragCZ": 3, "perfHB": 0, "perfCZ": 2, "erzHB": 0, "erzCZ": 5}' aria-label="Option B: Moving characters you can empathize with.">
+    B: Bewegende Figuren, mit denen man mitfühlen kann.
+</label>
+<label>
+    <input type="radio" name="q20" value='{"planerHB": 3, "planerCZ": 0, "bauchHB": 5, "bauchCZ": 0, "pragHB": 3, "pragCZ": 0, "perfHB": 5, "perfCZ": 0, "erzHB": 4, "erzCZ": 0}' aria-label="Option C: A world I can fully immerse myself in.">
+    C: Eine Welt, in die ich richtig eintauchen kann.
+</label>
+
+<button type="button" onclick="calculateResults()" disabled>Ergebnisse anzeigen</button>
 
     <div id="results" style="margin-top: 20px; display: none;">
-        <h2>Deine idealen Schreibtechniken:</h2>
+        <h2>Deine ideale Schreibtechnik:</h2>
         <p id="resultText"></p>
     </div>
 </div>
+
 <script>
-    function calculateResults() {
+    function calculateResults(event) {
+        event.preventDefault();
+
         const form = document.getElementById('surveyForm');
         const formData = new FormData(form);
-        const results = {};
 
-        // Map short codes to full technique names
-        const techniqueMapping = {
-            schneeflocke: 'Die Schneeflockenmethode',
-            save: 'Die Save-the-Cat-Methode',
-            beat: 'Die Beat-Sheet-Methode',
-            heldenreise: 'Die Heldenreise',
-            story: 'Die Story-Circle-Methode',
-            dreiakt: 'Die 3-Akt-Methode',
-            discovery: 'Die Discovery-Writing-Methode',
-            mindmap: 'Die Mindmapping-Methode',
-            character: 'Charakterzentriertes Schreiben',
-            episodisch: 'Die Episodische Struktur',
-            szenenplanung: 'Die Szenenplanung',
-            modular: 'Die Modulare Methode',
-            reverse: 'Das Rückwärts-Schreiben',
-            worldbuilding: 'Worldbuilding-zentriertes Schreiben',
-            freytag: 'Die Freytag-Pyramide'
+        // Check if all questions are answered
+        const questions = document.querySelectorAll('input[type="radio"]:checked');
+        const errorDiv = document.getElementById('errorMessage');
+        if (questions.length < 20) {
+            errorDiv.innerText = `Bitte beantworte alle ${20 - questions.length} fehlenden Fragen!`;
+            errorDiv.style.display = 'block';
+            return;
+        } else {
+            errorDiv.style.display = 'none';
+        }
+
+        const scores = {
+            planerHB: 0, planerCZ: 0,
+            bauchHB: 0, bauchCZ: 0,
+            pragHB: 0, pragCZ: 0,
+            perfHB: 0, perfCZ: 0,
+            erzHB: 0, erzCZ: 0
         };
 
-        // Collect all question inputs
-        const questions = document.querySelectorAll('[name^="q"]');
-        const totalQuestions = Array.from(new Set(
-            Array.from(questions).map(question => question.name)
-        ));
-        const answeredQuestions = new Set();
+        formData.forEach(value => {
+            try {
+                const weights = JSON.parse(value);
+                for (const type in weights) {
+                    scores[type] += weights[type];
+                }
+            } catch (e) {
+                console.error("Fehler beim Parsen der JSON-Daten: ", e);
+            }
+        });
 
-        // Check if all questions have been answered
-        for (const question of totalQuestions) {
-            if (formData.has(question)) {
-                answeredQuestions.add(question);
+        let maxScore = 0;
+        let topType = "";
+        for (const type in scores) {
+            if (scores[type] > maxScore) {
+                maxScore = scores[type];
+                topType = type;
             }
         }
 
-        if (answeredQuestions.size < totalQuestions.length) {
-            document.getElementById('resultText').innerText =
-                'Bitte beantworte alle Fragen, bevor du deine Ergebnisse anzeigen lässt.';
-            document.getElementById('results').style.display = 'block';
-            return;
-        }
+        const typeDescriptions = {
+            planerHB: "Strukturierter Planer (handlungsbasiert)",
+            planerCZ: "Strukturierter Planer (charakterzentriert)",
+            bauchHB: "Kreativer Bauchschreiber (handlungsbasiert)",
+            bauchCZ: "Kreativer Bauchschreiber (charakterzentriert)",
+            pragHB: "Effizienter Pragmatiker (handlungsbasiert)",
+            pragCZ: "Effizienter Pragmatiker (charakterzentriert)",
+            perfHB: "Detailverliebter Perfektionist (handlungsbasiert)",
+            perfCZ: "Detailverliebter Perfektionist (charakterzentriert)",
+            erzHB: "Emotionaler Erzähler (handlungsbasiert)",
+            erzCZ: "Emotionaler Erzähler (charakterzentriert)"
+        };
 
-        // Read and count responses
-        formData.forEach((value) => {
-            const techniques = value.split(',');
-            techniques.forEach(tech => {
-                results[tech] = (results[tech] || 0) + 1;
-            });
-        });
+        const techniques = {
+            planerHB: "handlungsbasierte Baumstamm-Methode",
+            planerCZ: "charakterzentrierte Baumstamm-Methode",
+            bauchHB: "handlungsbasierte Funken-Methode",
+            bauchCZ: "charakterzentrierte Funken-Methode",
+            pragHB: "handlungsbasierte Kreativkatalysator-Methode",
+            pragCZ: "charakterzentrierte Kreativkatalysator-Methode",
+            perfHB: "handlungsbasierte Meisterwerk-Methode",
+            perfCZ: "charakterzentrierte Meisterwerk-Methode",
+            erzHB: "handlungsbasierte Herzstück-Methode",
+            erzCZ: "charakterzentrierte Herzstück-Methode"
+        };
 
-        // Sort results and select the top 2 techniques
-        const sortedResults = Object.entries(results).sort((a, b) => b[1] - a[1]);
-        const topTechniques = sortedResults.slice(0, 2).map(entry => techniqueMapping[entry[0]]);
-
-        // Display the result
-        document.getElementById('resultText').innerText = `Ich empfehle dir als Schreibtechnik: ${topTechniques.join(' und ')}.`;
+        document.getElementById('resultText').innerText = `Dein Schreibtyp: ${typeDescriptions[topType]}. Nutze die ${techniques[topType]} als Werkzeug.`;
         document.getElementById('results').style.display = 'block';
     }
+
+    // Enable button only after all questions are answered
+    document.querySelectorAll('input[type="radio"]').forEach(input => {
+        input.addEventListener('change', () => {
+            const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+            document.querySelector('button[type="button"]').disabled = answered < 20;
+        });
+    });
 </script>
 </body>
 </html>
