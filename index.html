@@ -363,34 +363,57 @@
 </div>
 
 <script>
-    function calculateResults(event) {
-        event.preventDefault();
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("surveyForm");
+        const resultButton = document.querySelector('button[type="button"]');
 
-        const form = document.getElementById('surveyForm');
+        // Button Click Event Listener
+        resultButton.addEventListener("click", (event) => {
+            event.preventDefault(); // Prevent default button behavior
+            calculateResults(); // Call the results calculation
+        });
+
+        // Enable button only when all questions are answered
+        document.querySelectorAll('input[type="radio"]').forEach((input) => {
+            input.addEventListener("change", () => {
+                const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+                resultButton.disabled = answered < 20;
+            });
+        });
+    });
+
+    function calculateResults() {
+        console.log("calculateResults wurde aufgerufen!"); // Testausgabe
+        const form = document.getElementById("surveyForm");
         const formData = new FormData(form);
 
         // Check if all questions are answered
         const questions = document.querySelectorAll('input[type="radio"]:checked');
-        const errorDiv = document.getElementById('errorMessage');
+        const errorDiv = document.getElementById("errorMessage");
         if (questions.length < 20) {
             errorDiv.innerText = `Bitte beantworte alle ${20 - questions.length} fehlenden Fragen!`;
-            errorDiv.style.display = 'block';
+            errorDiv.style.display = "block";
             return;
         } else {
-            errorDiv.style.display = 'none';
+            errorDiv.style.display = "none";
         }
 
         // Initialize scores object
         const scores = {
-            planerHB: 0, planerCZ: 0,
-            bauchHB: 0, bauchCZ: 0,
-            pragHB: 0, pragCZ: 0,
-            perfHB: 0, perfCZ: 0,
-            erzHB: 0, erzCZ: 0
+            planerHB: 0,
+            planerCZ: 0,
+            bauchHB: 0,
+            bauchCZ: 0,
+            pragHB: 0,
+            pragCZ: 0,
+            perfHB: 0,
+            perfCZ: 0,
+            erzHB: 0,
+            erzCZ: 0,
         };
 
         // Parse and sum up scores from the selected answers
-        formData.forEach(value => {
+        formData.forEach((value) => {
             try {
                 const weights = JSON.parse(value);
                 for (const type in weights) {
@@ -422,7 +445,7 @@
             perfHB: "Detailverliebter Perfektionist (handlungsbasiert)",
             perfCZ: "Detailverliebter Perfektionist (charakterzentriert)",
             erzHB: "Emotionaler Erzähler (handlungsbasiert)",
-            erzCZ: "Emotionaler Erzähler (charakterzentriert)"
+            erzCZ: "Emotionaler Erzähler (charakterzentriert)",
         };
 
         const techniques = {
@@ -435,21 +458,13 @@
             perfHB: "handlungsbasierte Meisterwerk-Methode",
             perfCZ: "charakterzentrierte Meisterwerk-Methode",
             erzHB: "handlungsbasierte Herzstück-Methode",
-            erzCZ: "charakterzentrierte Herzstück-Methode"
+            erzCZ: "charakterzentrierte Herzstück-Methode",
         };
 
         // Display the result in German
-        document.getElementById('resultText').innerText = `Dein Schreibtyp: ${typeDescriptions[topType]}. Nutze die ${techniques[topType]} als Werkzeug.`;
-        document.getElementById('results').style.display = 'block';
+        document.getElementById("resultText").innerText = `Dein Schreibtyp: ${typeDescriptions[topType]}. Nutze die ${techniques[topType]} als Werkzeug.`;
+        document.getElementById("results").style.display = "block";
     }
-
-    // Enable button only after all questions are answered
-    document.querySelectorAll('input[type="radio"]').forEach(input => {
-        input.addEventListener('change', () => {
-            const answered = document.querySelectorAll('input[type="radio"]:checked').length;
-            document.querySelector('button[type="button"]').disabled = answered < 20;
-        });
-    });
 </script>
 </body>
 </html>
