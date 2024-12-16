@@ -380,6 +380,7 @@
             errorDiv.style.display = 'none';
         }
 
+        // Initialize scores object
         const scores = {
             planerHB: 0, planerCZ: 0,
             bauchHB: 0, bauchCZ: 0,
@@ -388,6 +389,7 @@
             erzHB: 0, erzCZ: 0
         };
 
+        // Parse and sum up scores from the selected answers
         formData.forEach(value => {
             try {
                 const weights = JSON.parse(value);
@@ -395,10 +397,11 @@
                     scores[type] += weights[type];
                 }
             } catch (e) {
-                console.error("Fehler beim Parsen der JSON-Daten: ", e);
+                console.error("Error parsing the JSON data: ", e);
             }
         });
 
+        // Determine the highest score
         let maxScore = 0;
         let topType = "";
         for (const type in scores) {
@@ -408,6 +411,7 @@
             }
         }
 
+        // Type descriptions and techniques in German
         const typeDescriptions = {
             planerHB: "Strukturierter Planer (handlungsbasiert)",
             planerCZ: "Strukturierter Planer (charakterzentriert)",
@@ -434,6 +438,7 @@
             erzCZ: "charakterzentrierte Herzstück-Methode"
         };
 
+        // Display the result in German
         document.getElementById('resultText').innerText = `Dein Schreibtyp: ${typeDescriptions[topType]}. Nutze die ${techniques[topType]} als Werkzeug.`;
         document.getElementById('results').style.display = 'block';
     }
